@@ -27,4 +27,8 @@ export default defineConfig({
     visionTool({ defaultApiVersion: apiVersion }),
     markdownSchema(),
   ],
+} as {
+  basePath: string;
+  projectId: string;
+  dataset: string;
 });

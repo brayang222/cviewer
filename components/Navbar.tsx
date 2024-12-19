@@ -33,8 +33,8 @@ export const Navbar = async () => {
               <Link href={`/user/${session?.id}`}>
                 <Avatar className="size-10">
                   <AvatarImage
-                    src={session?.user?.image || ""}
-                    alt={session?.user?.name}
+                    src={session.user.image || ""}
+                    alt={session.user.name || ""}
                   />
                   <AvatarFallback>AV</AvatarFallback>
                 </Avatar>
