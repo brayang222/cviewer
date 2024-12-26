@@ -16,7 +16,7 @@ export const StartupForm = () => {
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [pitch, setPitch] = React.useState("");
   const { toast } = useToast();
-  const router = useRouter();
+  const router = useRouter();  
 
   const handleFormSubmit = async (
     prevState: {
