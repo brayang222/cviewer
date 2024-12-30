@@ -1,8 +1,7 @@
 import NextAuth from "next-auth";
 import Google from "next-auth/providers/google";
 import { AUTHOR_BY_GOOGLE_ID_QUERY } from "./sanity/lib/queries";
-import { client } from "./sanity/lib/client";
-import { writeClient } from "./sanity/lib/write-client";
+import { client } from "@/sanity/lib/client";
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
   providers: [Google],
@@ -18,16 +17,20 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
           id: googleId,
         });
 
+      // if (!existingUser) {
+      //   await writeClient.create({
+      //     _type: "author",
+      //     id: googleId,
+      //     name: user?.name,
+      //     username: profile?.nickname,
+      //     email: user?.email,
+      //     image: user?.image,
+      //     bio: profile?.bio || "",
+      //   });
+      // }
+
       if (!existingUser) {
-        await writeClient.create({
-          _type: "author",
-          id: googleId,
-          name: user?.name,
-          username: profile?.nickname,
-          email: user?.email,
-          image: user?.image,
-          bio: profile?.bio || "",
-        });
+        throw new Error("User not found");
       }
       return true;
     },
